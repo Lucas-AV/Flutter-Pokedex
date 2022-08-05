@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'dart:io';
 
 List<String> pokeGens = [
@@ -434,30 +433,6 @@ class PokePage extends StatefulWidget {
 }
 
 class _PokePageState extends State<PokePage> {
-  /*
-  InterstitialAd? interstitialAd;
-  bool isLoaded = false;
-  @override
-  void didChangeDependencies(){
-    super.didChangeDependencies();
-    InterstitialAd.load(
-      adUnitId: 'ca-app-pub-3940256099942544/1033173712',
-      request: const AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad){
-          setState(() {
-            isLoaded=true;
-            this.interstitialAd=ad;
-          });
-          print("Ad loaded");
-        },
-        onAdFailedToLoad: (error){
-          print(error);
-        }
-      ),
-    );
-  }
-  */
 
   FutureOr verifyWifi() async {
     try {
@@ -490,9 +465,6 @@ class _PokePageState extends State<PokePage> {
           automaticallyImplyLeading: false,
           leading: RawMaterialButton(
             onPressed: (){
-              /*if(isLoaded){
-                interstitialAd!.show();
-              }*/
               Navigator.pop(context);
             },
             child: const Icon(Icons.arrow_back),
@@ -705,156 +677,8 @@ class _PokePageState extends State<PokePage> {
               ),
 
               // Height and Weight
-              /*
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 3,
-                          spreadRadius: 1
-                        )
-                      ]
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "${widget.pokeName} is a ${pokemons[widget.pokeName]['category']}",
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  "Weight",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  )
-                                ),
-                                Text(
-                                  "${pokemons[widget.pokeName]['weight']/10} Kg",
-                                  style: const TextStyle(
-                                    fontSize: 12
-                                  ),
-                                ),
-                              ],
-                            ),
-                            /*Column(
-                              children: [
-                                Text(
-                                  "Category",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 24,
-                                  )
-                                ),
-                                Text(
-                                  "${pokemons[widget.pokeName]['category']}",
-                                  style: const TextStyle(
-                                    fontSize: 16
-                                  ),
-                                ),
-                              ],
-                            ),*/
-                            Column(
-                              children: [
-                                Text(
-                                  "Height",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  )
-                                ),
-                                Text(
-                                  "${pokemons[widget.pokeName]['height']/10} m",
-                                  style: const TextStyle(
-                                    fontSize: 12
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              */
 
               // Encounters
-              /*
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 3,
-                            spreadRadius: 1
-                        )
-                      ]
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 10),
-                    child: Column(
-                      children: [
-                        Column(
-                          children: [
-                            const Text(
-                              "Encounters details",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            Text(
-                              "In POKÉMON-XYZ ${widget.pokeName} can be encountered at: LOCAL",
-                              style: const TextStyle(
-                                fontSize: 16,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              */
 
               // Combat Base Stats
               Padding(
@@ -1057,69 +881,6 @@ class _PokePageState extends State<PokePage> {
               ),
 
               // Abilites
-              /*
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 3,
-                        spreadRadius: 1
-                      )
-                    ]
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 10),
-                    child: Column(
-                      children: [
-                        Column(
-                          children: [
-                            Text(
-                              "${widget.pokeName} Abilities",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 3,
-                            ),
-                            Text(
-                              "${widget.pokeName} have a total of ${pokemons[widget.pokeName]['abilities'].keys.toList().length} abilities.",
-                              style: const TextStyle(
-                                fontSize: 16
-                              ),
-                            ),
-                            /*
-                            for(String i in pokemons[widget.pokeName]['abilities'].keys.toList())
-                              Column(
-                                children: [
-                                  Text("${i[0].toUpperCase()}${i.substring(1)}",style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
-                                  for(String j in pokemons[widget.pokeName]['abilities'][i]['effect_entries'])
-                                    Text(j,textAlign: TextAlign.center,style: const TextStyle(fontSize: 14),),
-                                  const SizedBox(height: 7)
-                                ],
-                              )
-                            */
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              */
 
               // Other Stats
               Padding(
