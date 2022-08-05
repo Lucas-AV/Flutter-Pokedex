@@ -1,8 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'dart:io';
 
 List<String> pokeGens = [
   'Generation Zero',
@@ -61,11 +63,18 @@ Map<String, dynamic> typos = {
 Map<String, dynamic> pokemons = {};
 
 void main() {
+
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key){}
+class MyApp extends StatefulWidget {
+  MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -178,9 +187,9 @@ class _PokedexState extends State<Pokedex> {
               scale: 150,
             ),
             Center(
-              child: CachedNetworkImage(
-                imageUrl: pokemons[pkn]["img"],
-                height: 150,
+              child: Image.asset(
+                "assets/opt/$pkn.png",
+                scale: 1.17,
               ),
             ),
             Padding(
@@ -247,7 +256,6 @@ class _PokedexState extends State<Pokedex> {
       pokemons = data;
     });
   }
-
 }
 
 class SearchScreen extends StatefulWidget {
@@ -365,9 +373,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                     pokeColor: typesColor[foundPokemons[foundPokemons.keys.toList()[index]]['types'].keys.toList()[0]],
                                     scale: 45,
                                 ),
-                                CachedNetworkImage(
-                                  imageUrl: foundPokemons[foundPokemons.keys.toList()[index]]["front"],
-                                  height: MediaQuery.of(context).size.height*0.365,
+                                Image.asset(
+                                  "assets/mini/${foundPokemons.keys.toList()[index]}.png",
                                 ),
                               ],
                             ),
@@ -400,7 +407,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                 ),
                               ]
                             ),
-                            child: Image.asset(
+                            child:
+                            Image.asset(
                               "assets/icons/${foundPokemons[foundPokemons.keys.toList()[index]]["types"].keys.toList()[0]}.png",
                               scale: 2.05,
                             ),
@@ -450,6 +458,19 @@ class _PokePageState extends State<PokePage> {
     );
   }
   */
+
+  FutureOr verifyWifi() async {
+    try {
+      final result = await InternetAddress.lookup('example.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('connected');
+        return 1;
+      }
+    } on SocketException catch (_) {
+      print('not connected');
+      return 0;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -550,7 +571,13 @@ class _PokePageState extends State<PokePage> {
                         scale: 280
                       ),
                       Center(
-                        child: CachedNetworkImage(
+                        child:
+                        verifyWifi() == 1 ?
+                        Image.asset(
+                          "assets/opt/${widget.pokeName}.png",
+                          scale: 1.17,
+                        ) :
+                        CachedNetworkImage(
                           imageUrl: pokemons[widget.pokeName]["img"],
                           height: MediaQuery.of(context).size.height*0.365
                         ),
@@ -558,8 +585,8 @@ class _PokePageState extends State<PokePage> {
                       Positioned(
                         bottom: -5,
                         right: -1,
-                        child: CachedNetworkImage(
-                          imageUrl: pokemons[widget.pokeName]["front"],
+                        child: Image.asset(
+                          "assets/mini/${widget.pokeName}.png",
                         ),
                       ),
                     ],
@@ -1195,15 +1222,13 @@ class _PokePageState extends State<PokePage> {
                             const SizedBox(
                               height: 3,
                             ),
-                            pokemons[widget.pokeName]["evolutions"].length == 1?
-                            Text(
+                            if (pokemons[widget.pokeName]["evolutions"].length == 1) Text(
                               "The pokémon ${widget.pokeName} don't have any evolutions.",
                               style: const TextStyle(
                                 fontSize: 16,
                               ),
                               textAlign: TextAlign.center,
-                            ):
-                            GridView.count(
+                            ) else GridView.count(
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               crossAxisCount: pokemons[widget.pokeName]["evolutions"].length % 2 == 0? 2 : 3,
@@ -1234,11 +1259,11 @@ class _PokePageState extends State<PokePage> {
                                               scale: pokemons[widget.pokeName]["evolutions"].length % 2 == 0? 100:80,
                                             ),
                                             Center(
-                                              child: CachedNetworkImage(
-                                                imageUrl: pokemons[pokemons[widget.pokeName]["evolutions"][i]]["img"],
-                                                height: pokemons[widget.pokeName]["evolutions"].length % 2 == 0?
-                                                MediaQuery.of(context).size.height*0.16 :
-                                                MediaQuery.of(context).size.height*0.12,
+                                              child: Image.asset(
+                                                "assets/opt/${pokemons[pokemons[widget.pokeName]["evolutions"][i]]["name"]}.png",
+                                                scale:  pokemons[widget.pokeName]["evolutions"].length % 2 == 0?
+                                                1.33 :
+                                                1.78,
                                               ),
                                             ),
                                             Row(
