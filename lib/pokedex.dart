@@ -30,11 +30,17 @@ class _PokedexState extends State<Pokedex> {
           backgroundColor: const Color(0xff212121),
           appBar: AppBar(
             backgroundColor: Colors.black,
-            title: const Text(
+            title: Text(
               "Pokédex",
               style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                shadows: [
+                  Shadow(
+                    color: Colors.white.withOpacity(0.5),
+                    blurRadius: 5
+                  )
+                ]
               ),
             ),
             actions: [
