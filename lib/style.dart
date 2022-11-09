@@ -55,3 +55,148 @@ Map<String, dynamic> typos = {
 };
 
 Map<String, dynamic> pokemons = {};
+
+
+class StatsBar extends StatelessWidget {
+  const StatsBar({
+    Key? key,
+    required this.title,
+    required this.attr,
+    required this.color,
+    required this.div,
+    required this.por,
+  }) : super(key: key);
+  final String title;
+  final int div;
+  final bool por;
+  final int attr;
+  final Color color;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title,style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+            por? Text("[ ${((attr/div)*100).toStringAsFixed(2)}% ]",style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16)) : Text("[ $attr ]",style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+          ],
+        ),
+        const SizedBox(height: 1),
+        LinearProgressIndicator(
+          value: attr/div,
+          backgroundColor: Colors.black.withOpacity(0.1),
+          color: color,
+          minHeight: 12,
+        ),
+      ],
+    );
+  }
+}
+
+class PillType extends StatelessWidget {
+  const PillType({
+    Key? key,
+    required this.type,
+  }) : super(key: key);
+
+  final String type;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 5),
+      padding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.4),
+        borderRadius: BorderRadius.circular(100),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.0),
+            spreadRadius: 1,
+            blurRadius: 3,
+          )
+        ]
+      ),
+      child: Text(
+        type,
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 17,
+          shadows: [
+            Shadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 10,
+              offset: const Offset(1.0, 2.0)
+            )
+          ]
+        )
+      ),
+    );
+  }
+}
+
+class ContentSection extends StatefulWidget {
+  const ContentSection({
+    Key? key, required this.title, required this.body
+  }) : super(key: key);
+  final String title;
+  final Widget body;
+
+  @override
+  State<ContentSection> createState() => _ContentSectionState();
+}
+
+class _ContentSectionState extends State<ContentSection> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 6),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 3,
+              spreadRadius: 1
+            )
+          ]
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 10),
+          child: Column(
+            children: [
+              Column(
+                children: [
+                  Text(
+                    widget.title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      shadows: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          spreadRadius: 10
+                        )
+                      ]
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              widget.body,
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
