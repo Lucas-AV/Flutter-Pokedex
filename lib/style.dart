@@ -13,24 +13,24 @@ List<String> pokeGens = [
 ];
 
 Map<String, dynamic> typesColor = {
-  "Bug":const Color(0xff9bcc50),
-  "Dark":const Color(0xff707070),
-  "Dragon":const Color(0xff53a4cf),
-  "Electric":const Color(0xffF9A900),
+  "Bug":const Color.fromRGBO(132, 196, 0, 1),//Color(0xff9bcc50),
+  "Dark":const Color.fromRGBO(91, 83, 102, 1),//Color(0xff707070),
+  "Dragon":const Color.fromRGBO(0, 112, 202, 1),//Color(0xff53a4cf),
+  "Electric":const Color.fromRGBO(251, 210, 0, 1),//Color(0xffF9A900),
   "Fairy":const Color(0xfffb8aec),
   "Fighting":const Color(0xffe12c6a),
   "Fire":const Color(0xffff983f),
-  "Flying":const Color(0xff3dc7ef),
+  "Flying":const Color.fromRGBO(138, 172, 228, 1),//Color(0xff3dc7ef),
   "Ghost":const Color(0xff4b6ab3),
   "Grass":const Color(0xff35c04a),
   "Ground":const Color(0xffe97333),
   "Ice":const Color(0xff4bd2c1),
-  "Normal":const Color(0xffa4acaf),
+  "Normal":const Color.fromRGBO(146, 155, 163, 1),// Color(0xffa4acaf),
   "Poison":const Color(0xffb667cf),
   "Psychic":const Color(0xffff6676),
   "Rock":const Color(0xffc9b787),
-  "Steel":const Color(0xff9eb7b8),
-  "Water":const Color(0xff4592c4)
+  "Steel":const Color.fromRGBO(89, 143, 163, 1),//Color(0xff9eb7b8),
+  "Water":const Color.fromRGBO(51, 147, 221, 1),//Color(0xff4592c4)
 };
 
 Map<String, dynamic> typos = {
