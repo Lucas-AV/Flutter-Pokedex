@@ -22,7 +22,7 @@ def download_pokemons():
                 scrapy.download_img(f"{n}.png",m,path_mini)
             if(f"{n}.png" not in os.listdir('opt')):
                 scrapy.download_img(f"{n}.png",p,path_opt)
-
+ 
     thd = [Thread(target=collec,args=([j])) for j in data]
     for t in thd:
         t.start()
@@ -42,6 +42,18 @@ def get_moves():
         bs = scrapy.collect_html(link)
         bs = json.loads(str(bs))
         effect = [j for j in bs["effect_entries"] if "'name': 'en'" in str(j)][0]
+        others = [
+            "min_hits",
+            "min_turns",
+            "max_hits",
+            "max_turns",
+            "flinch_chance",
+            "category",
+            "crit_rate",
+            "stat_chance",
+            "healing",
+            "drain",
+        ]
         move = {
             # "min hits":bs["min_hits"] if bs["min_hits"] != None else 0,
             # "min turns":bs["min_turns"] if bs["min_turns"] != None else 0,
@@ -52,10 +64,10 @@ def get_moves():
             # "critical rate":bs["crit_rate"],
             # "stat chance":bs["stat_chance"],
             # "healing":bs["healing"],
+            # "effect entries":effect,
             # "drain":bs["drain"],
             "power":bs["power"] if bs["power"] != None else 0,
             "flavor text entries":[j for j in bs["flavor_text_entries"] if "'name': 'en'" in str(j)][0]["flavor_text"],
-            # "effect entries":effect,
             "complete":effect["effect"],
             "short":effect["short_effect"],
             "effect changes":bs["effect_changes"],
@@ -68,6 +80,12 @@ def get_moves():
             "id":bs["id"],
         }
 
+        add_to_move = lambda term,fn: move.update({term:bs[term] if bs[term] != None else fn})
+        for m in others:
+            try:
+                add_to_move(m,0)
+            except:
+                move.update({m:0})
         print(i,move)
         print()
 get_moves()
