@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'dart:async';
 import 'style.dart';
 
-
 class Pokedex extends StatefulWidget {
   const Pokedex({Key? key}) : super(key: key);
 
@@ -48,10 +47,10 @@ class _PokedexState extends State<Pokedex> {
                 onPressed: (){
                   setState(() {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SearchScreen(),
-                        )
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchScreen(),
+                      )
                     );
                   });
                 },
@@ -86,26 +85,26 @@ class _PokedexState extends State<Pokedex> {
       onPressed: (){
         setState(() {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PokePage(
-                  pokeName: pkn,
-                ),
-              )
+            context,
+            MaterialPageRoute(
+              builder: (context) => PokePage(
+                pokeName: pkn,
+              ),
+            )
           );
         });
       },
       child: Container(
         decoration: BoxDecoration(
-            color: typesColor[pokemons[pkn]['types'].keys.toList()[0]],
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
-                  blurRadius: 5,
-                  spreadRadius: 2
-              )
-            ]
+          color: typesColor[pokemons[pkn]['types'].keys.toList()[0]],
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 5,
+              spreadRadius: 2
+            )
+          ]
         ),
         child: Stack(
             children: [
@@ -130,9 +129,9 @@ class _PokedexState extends State<Pokedex> {
                         fontWeight: FontWeight.bold,
                         shadows: [
                           Shadow(
-                              color: Colors.black.withOpacity(0.4),
-                              blurRadius: 10,
-                              offset: Offset(1.0, 2.0)
+                            color: Colors.black.withOpacity(0.4),
+                            blurRadius: 10,
+                            offset: Offset(1.0, 2.0)
                           )
                         ],
                         color: Colors.white,
@@ -156,9 +155,9 @@ class _PokedexState extends State<Pokedex> {
                             fontWeight: FontWeight.bold,
                             shadows: [
                               Shadow(
-                                  color: Colors.black.withOpacity(0.5),
-                                  blurRadius: 10,
-                                  offset: Offset(1.0, 2.0)
+                                color: Colors.black.withOpacity(0.5),
+                                blurRadius: 10,
+                                offset: Offset(1.0, 2.0)
                               )
                             ],
                             color: Colors.white,
