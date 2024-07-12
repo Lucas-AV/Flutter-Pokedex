@@ -62,6 +62,25 @@ class _PokedexState extends State<Pokedex> {
               ),
             ],
           ),
+          bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Colors.black,
+            fixedColor: Colors.white,
+            unselectedItemColor: Colors.white.withOpacity(0.3),
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.book),
+                label: "Pokedex",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shield),
+                label: "Moves"
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: "Settings"
+              ),
+            ],
+          ),
           body: Stack(
             children: [
               GridView.count(

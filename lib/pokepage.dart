@@ -1,11 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'second_page.dart';
 import 'first_page.dart';
 import 'style.dart';
-import 'dart:async';
-import 'dart:io';
-
+import 'moves.dart';
 class PokePage extends StatefulWidget {
   const PokePage({Key? key, required this.pokeName}) : super(key: key);
   final String pokeName;
@@ -67,7 +64,8 @@ class _PokePageState extends State<PokePage> {
                   children: [
                     FirstPage(pokeName: widget.pokeName),
                     SecondPage(pokeName: widget.pokeName),
-                    Container(),
+                    const MovesPages()
+                    // Container(),
                   ],
                 ),
               )
@@ -100,21 +98,23 @@ class PokeBall extends StatelessWidget {
               width: scale,
               height: scale,
               decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(200)
+                color: Colors.white.withOpacity(0.4),
+                borderRadius: BorderRadius.circular(200)
               ),
             ),
           ),
+
           Center(
             child: Container(
               width: scale/2,
               height: scale/2,
               decoration: BoxDecoration(
-                  color: pokeColor,
-                  borderRadius: BorderRadius.circular(200)
+                color: pokeColor,
+                borderRadius: BorderRadius.circular(200)
               ),
             ),
           ),
+
           Center(
             child: Container(
               width: scale,

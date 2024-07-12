@@ -23,7 +23,6 @@ class _SecondPageState extends State<SecondPage> {
         padding: const EdgeInsets.only(top: 6,bottom: 12),
         child: Column(
           children: [
-            // "${}.png"
             Padding(
               padding: const EdgeInsets.only(left: 16,top: 10),
               child: Row(
@@ -34,15 +33,45 @@ class _SecondPageState extends State<SecondPage> {
               ),
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(
-                  "assets/icons/${types[idx]}.png",
+                TypeButton(
+                  img: "assets/icons/${types[idx]}.png",
+                  height: MediaQuery.of(context).size.height*0.075,
+                ),
+                TypeButton(
+                  img: "assets/icons/${types[idx]}.png",
+                  height: MediaQuery.of(context).size.height*0.2,
+                ),
+                TypeButton(
+                  img: "assets/icons/${types[idx]}.png",
+                  height: MediaQuery.of(context).size.height*0.075,
                 ),
               ],
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class TypeButton extends StatefulWidget {
+  const TypeButton({Key? key, required this.img, required this.height}) : super(key: key);
+  final String img;
+  final double height;
+  @override
+  State<TypeButton> createState() => _TypeButtonState();
+}
+
+class _TypeButtonState extends State<TypeButton> {
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: (){},
+      child: Image.asset(
+        widget.img,
+        height: widget.height,
       ),
     );
   }
